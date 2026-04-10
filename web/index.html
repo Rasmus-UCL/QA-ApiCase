@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quality API Client</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; background: #f5f7fa; color: #1f2937; }
+    header { background: #0b5c6b; color: white; padding: 16px 20px; }
+    main { display: grid; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); gap: 16px; padding: 16px; }
+    .card { background: white; border: 1px solid #d0d5dd; border-radius: 12px; padding: 16px; }
+    input, button { width: 100%; padding: 10px; margin-top: 8px; box-sizing: border-box; }
+    button { background: #0b5c6b; color: white; border: none; border-radius: 8px; }
+    .result { margin-top: 12px; padding: 10px; background: #eef2f6; border-radius: 8px; min-height: 22px; }
+    .hint { color: #667085; font-size: 0.95rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Quality API Client</h1>
+    <p>Simpel browserklient til C++ backend API</p>
+  </header>
+  <main>
+    <section class="card">
+      <h2>Karakter</h2>
+      <p class="hint">Kald: GET /api/grade?score=...</p>
+      <input id="score" type="number" placeholder="fx 60">
+      <button onclick="callApi('/api/grade?score=' + document.getElementById('score').value, 'gradeResult')">Test kald</button>
+      <div id="gradeResult" class="result"></div>
+    </section>
+    <section class="card">
+      <h2>Rabat</h2>
+      <p class="hint">Kald: GET /api/discount?amount=...</p>
+      <input id="amount" type="number" placeholder="fx 100 eller 1000">
+      <button onclick="callApi('/api/discount?amount=' + document.getElementById('amount').value, 'discountResult')">Test kald</button>
+      <div id="discountResult" class="result"></div>
+    </section>
+    <section class="card">
+      <h2>Booking</h2>
+      <p class="hint">Kald: GET /api/booking?seats=...</p>
+      <input id="seats" type="number" placeholder="fx 6">
+      <button onclick="callApi('/api/booking?seats=' + document.getElementById('seats').value, 'bookingResult')">Test kald</button>
+      <div id="bookingResult" class="result"></div>
+    </section>
+    <section class="card">
+      <h2>Brugernavn</h2>
+      <p class="hint">Kald: GET /api/username?name=...</p>
+      <input id="name" type="text" placeholder="fx   Alice  ">
+      <button onclick="callApi('/api/username?name=' + encodeURIComponent(document.getElementById('name').value), 'userResult')">Test kald</button>
+      <div id="userResult" class="result"></div>
+    </section>
+  </main>
+  <script>
+    const API_BASE = 'http://localhost:8080';
+    async function callApi(path, targetId) {
+      const target = document.getElementById(targetId);
+      try {
+        const res = await fetch(API_BASE + path);
+        const data = await res.json();
+        target.textContent = JSON.stringify(data);
+      } catch (err) {
+        target.textContent = 'Kunne ikke kontakte API: ' + err.message;
+      }
+    }
+  </script>
+</body>
+</html>

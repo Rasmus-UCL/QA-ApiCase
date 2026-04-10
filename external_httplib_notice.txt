@@ -1,0 +1,1 @@
+Place httplib.h in app/external/ for offline builds, or let CMake fetch cpp-httplib automatically during configuration.

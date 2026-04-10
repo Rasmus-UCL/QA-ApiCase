@@ -1,0 +1,38 @@
+stages:
+  - build
+  - test
+  - deploy
+
+build_backend:
+  stage: build
+  image: gcc:13
+  before_script:
+    - apt-get update && apt-get install -y cmake
+  script:
+    - cmake -S . -B build
+    - cmake --build build
+  artifacts:
+    paths:
+      - build/
+
+test_backend:
+  stage: test
+  image: gcc:13
+  before_script:
+    - apt-get update && apt-get install -y cmake
+  script:
+    - cmake -S . -B build
+    - cmake --build build
+    - ./build/quality_tests
+
+pages:
+  stage: deploy
+  image: alpine:latest
+  script:
+    - mkdir public
+    - cp web/index.html public/
+  artifacts:
+    paths:
+      - public
+  only:
+    - main

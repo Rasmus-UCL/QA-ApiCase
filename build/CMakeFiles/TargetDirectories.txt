@@ -1,0 +1,4 @@
+C:/Users/rakl5927/Downloads/cpp-api-blackbox-gitlab-case/cpp-api-blackbox-gitlab-case/app/build/CMakeFiles/quality_api.dir
+C:/Users/rakl5927/Downloads/cpp-api-blackbox-gitlab-case/cpp-api-blackbox-gitlab-case/app/build/CMakeFiles/quality_tests.dir
+C:/Users/rakl5927/Downloads/cpp-api-blackbox-gitlab-case/cpp-api-blackbox-gitlab-case/app/build/CMakeFiles/edit_cache.dir
+C:/Users/rakl5927/Downloads/cpp-api-blackbox-gitlab-case/cpp-api-blackbox-gitlab-case/app/build/CMakeFiles/rebuild_cache.dir
